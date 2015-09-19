@@ -1,0 +1,44 @@
+/*******************************************************************************************
+*     NekooiNWeek3.java
+*     N Nekooi
+*
+* This program calculates the dimensions of a Fez hat
+********************************************************************************************/
+import java.util.Scanner;
+
+public class NekooiMinooWeek3
+{
+     public static void main(String [] args)
+    {
+
+  Scanner stdIn = new Scanner(System.in);
+
+String name;
+int a; // auxiliary variable
+int b; // auxiliary variable
+int h; // auxiliary variable
+double density;
+double pi = 3.14159265359;
+
+System.out.println("What is the name of the owner of the Fez");
+name = stdIn.nextLine();
+
+System.out.println("What is Fez's small radium in inches");
+a = stdIn.nextInt();
+System.out.println("What is Fez's large radium in inches");
+b = stdIn.nextInt();
+System.out.println("What is Fez's height in inches");
+h = stdIn.nextInt();
+System.out.println("What is the Density of the fez in gr/cc?");
+density = stdIn.nextDouble();
+
+System.out.println (name + " fez has the following dimensions:" );
+System.out.println ("The small area is: " + (pi * (a * a)) + " Square Inches");
+System.out.println ("The big circumference is: " + (2 * pi * b) + " Inches Long");
+System.out.println ("The power of 2 of the lateral area is: " + (pi * pi * ((a + b) * (a + b)) * ((h * h) + (b - a) * (b - a))) + " Square Inches");
+
+System.out.println ("The cross area is: " + ((a + b) * h) + " Square Inches");
+System.out.println ("The power of 2 of the lateral area is: " + (pi * h * ((a * a) + (a * b) + (b * b))) / 3.0 + " Cubic Inches");
+System.out.println ("the weight is: " + (0.03609485 * density * (pi * h * ((a * a) + (a * b) + (b * b))) / 3.0) + " Pounds");
+    }// end main
+}// end class FezDimensionsCalculations

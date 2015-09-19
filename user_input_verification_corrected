@@ -1,0 +1,171 @@
+//gt Final Grade: 85/100
+
+// Partial Bonus.Number of trials should have a maximum of 3 [+2]
+
+/******************************************************************************************
+*     NekooiMinooProg5Fixed.java
+*     Minoo Nekooi
+*
+*     This program verifies user input for a password entry
+********************************************************************************************/
+import java.util.Scanner;
+
+public class NekooiMinooProg5Fixed
+{
+     public static void main(String [] args)
+     {
+        Scanner stdIn = new Scanner(System.in);
+
+        //variable decralations:
+      String password;//holds value of password input by user
+      int length;//password length
+      char ch;//holds char value of password string
+      //boolean variables used to check required password conditions
+      boolean hasSevenChars = false;
+      boolean hasText = false;
+      boolean hasBook = false;
+      boolean hasLowerCase = false;
+      boolean hasUpperCase = false;
+      boolean hasDigit = false;
+      boolean hasSpecialChar = false;
+
+//gt     do
+//gt     {//start of do-while loop - get user to re-enter password until a correct one is found
+
+      System.out.println("Please enter a password: \n");//messages to the user to get password and print criteria
+      System.out.println
+      ("=========================================");
+       System.out.println("Password must meet these requirements." +
+     "\nMust contain 7 characters.\nMust contain 1 lower case letter." +
+     "\nMust contain 1 upper case letter.\nMust contain 1 numeric digit." +
+       "\nMust contain 1 special character !@#$%^&*\nCannot contain the word TEXT or BOOK.");
+       System.out.println
+      ("=========================================");
+       password = stdIn.next();//stdin to get user input
+//gt       ch = password.charAt(0);
+    //start of password evaluations based on given criteria
+//gt     if (password.length() != 7)
+//gt Wrong condition! The password should have at least 7 characters [-3]
+//gt     {
+//gt       System.out.println("Invalid:  Should have exactly 7 characters!");
+       if (password.length() > 7) {
+              hasSevenChars = true;
+       }
+       else {
+            System.out.println("Invalid:  Should have more than 7 characters!");
+     }
+
+       if (password.indexOf("text") != -1)
+       {
+           System.out.println("Invalid:  Contains the string text!");
+             hasText = true;
+       }
+
+
+       if (password.indexOf("book") != -1)
+     {
+         System.out.println("Invalid:  Contains the string book!");
+           hasBook = true;
+       }
+
+//gt Why else? It must also check each of the following conditions
+//gt No else is needed in any of these conditions [-4]
+//gt     else if (!(Character.isLowerCase(ch)))
+//gt   {
+       for (int i=1; i<password.length(); i++)
+       {
+           ch = password.charAt(i);
+//gt             if (!Character.isLowerCase(ch))
+             if (Character.isLowerCase(ch))
+           {
+//gt                 System.out.println("Invalid password - Must have a Lower Case character.");
+                 hasLowerCase = true;
+           }// end if
+       } //end for
+       if (!hasLowerCase) {
+                 System.out.println("Invalid password - Must have a Lower Case character.");
+     }
+//gt      }//end else-if
+
+
+//gt     else if (!(Character.isUpperCase(ch)))
+//gt   {
+     for (int i=1; i<password.length(); i++)
+     {
+         ch = password.charAt(i);
+//gt         if (!Character.isUpperCase(ch))
+         if (Character.isUpperCase(ch))
+         {
+//gt                System.out.println("Invalid password - Must have a Upper Case character.");
+                hasUpperCase = true;
+         }// end if
+      } //end for
+       if (!hasUpperCase) {
+                System.out.println("Invalid password - Must have a Upper Case character.");
+     }
+//gt     }//end else-if
+//gt     else if (!(Character.isDigit(ch)))
+//gt   {
+      for (int i=1; i<password.length(); i++)
+      {
+          ch = password.charAt(i);
+//gt        if (!Character.isDigit(ch))
+        if (Character.isDigit(ch))
+        {
+//gt            System.out.println("Invalid password - Must have a numeric digit.");
+            hasDigit = true;
+         }// end if
+     } //end for
+       if (!hasDigit) {
+            System.out.println("Invalid password - Must have a numeric digit.");
+     }
+//gt     }//end else-if
+
+
+//gt     else if (!(password.charAt(0) == '~' || password.charAt(0) == '`' || password.charAt(0) == '!' || password.charAt(0) == '@' || password.charAt(0) == '#' || password.charAt(0) == '$' || password.charAt(0) == '%' || password.charAt(0) == '^' || password.charAt(0) == '&' || password.charAt(0) == '*' || password.charAt(0) == '(' || password.charAt(0) == ')' || password.charAt(0) == '_' || password.charAt(0) == '-' || password.charAt(0) == '+' || password.charAt(0) == '='))
+//gt   {
+     for (int i=1; i<password.length(); i++)
+     {
+        ch = password.charAt(i);
+        if ((ch =='%')||(ch == '$')||(ch == '!')||(ch == '@')||(ch == '#')||(ch == '^') )
+//gt This is just asample of the characters to check.
+        {
+//gt            System.out.println("Invalid password - Must have a numeric digit.");
+//gt            hasDigit = true;
+            hasSpecialChar = true;
+        }// end if
+
+     }//end for
+       if (!hasSpecialChar) {
+            System.out.println("Invalid password - Must have a special character.");
+     }
+//gt          if (!hasSpecialChar)
+//gt          {
+//gt               System.out.println("Invalid:  Must contain at least 1 special character");
+//gt               hasSpecialChar = true;
+//gt                }//end if
+//gt   }//end else-if
+
+//gt       if (hasSevenChars && hasText && hasBook && hasLowerCase && hasUpperCase && hasDigit && hasSpecialChar)
+       if (hasSevenChars && !hasText && !hasBook && hasLowerCase && hasUpperCase && hasDigit && hasSpecialChar)
+       {
+       System.out.println("Valid Entry!!");
+     }//end if
+     else
+     {
+       System.out.println("Invalid Entry!!");
+     }//end else
+
+//gt } while (!(hasSevenChars && hasText && hasBook && hasLowerCase && hasUpperCase && hasDigit && hasSpecialChar));
+//gt Loop should have checked not exceed more than 3 tries
+//end do-while loop
+
+     }//end main
+}//end class NekooiMinooProg5
+
+//gt The program does not validates correctly the passwords [-10]
+//gt The main problem with your code is that you did not follow the meaning of the booleans
+//gt In your program a hasLowerCase of true means that the password has a lower case
+//gt therefore the password is valid on this account,however if the variable hasText
+//gt is true, it also means that the password has the word "text", but this makes the
+//gt password invalid. So, for example  you need to check if (hasLowerCase && !hasText)

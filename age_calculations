@@ -1,0 +1,83 @@
+/*******************************************************************************************
+*     NekooiNWeek4.java
+*     N Nekooi
+*
+* This program calculates user's age based on input from the user
+********************************************************************************************/
+import java.util.Scanner;
+import java.util.Date;
+import java.util.Calendar;
+
+public class NekooiMinooWeek4
+{
+     public static void main(String [] args)
+    {
+       Scanner stdIn = new Scanner(System.in);
+
+       //variable declarations:
+       String firstName;//variable to store first name
+       String lastName;//variable to store last name
+       int age;//variable to store age of user
+       int counter = 0;//integer count variable to store the counter variable
+	   char response;//char variable for storing the answer to (y/n) in outer while loop
+	   char myChar;//used in counter loop
+	   String myString;//variable used in the loop
+	   int max;//used in while loop
+	   Calendar cal = Calendar.getInstance();//used to get current year
+	   int year = cal.get(Calendar.YEAR);//used to get current year
+
+       do //start do-while loop
+       {
+
+       System.out.println("Please enter your first name");
+       firstName = stdIn.next();
+       System.out.println("Please enter your last name");
+       lastName = stdIn.next();
+       System.out.println("Please enter your age in years: ");
+       age = stdIn.nextInt();
+
+       if (firstName.length() == lastName.length())
+	   {
+		   System.out.println("Hello " + firstName + " " + lastName);
+	       System.out.println("Your first and last name both have " + firstName.length() + " letters");
+	   }
+//gt Unnecessary if statement below [-4]
+//gt The previous if statement checks if the length are the same
+//gt if we do not enter there, the logical conclusion is that they are not equal
+//gt One does not need to ask again: Are they different? They are!
+	   else if (!(firstName.length() == lastName.length()))
+       {
+		   System.out.println("Hello " + firstName + " " + lastName);
+		   System.out.println("The lenght of your first name is: " + firstName.length() + " letters");
+		   System.out.println("The lenght of your last name is: " + lastName.length() + " letters");
+	   }
+        System.out.println("Characters in your name: " + '\n');
+	    System.out.println("Index" + '\t' + "Char" + '\t' + "ASCII Value:" + '\n');
+
+//gt Variable counter should be initialized to zero here [-2]
+//gt counter = 0;
+//gt without it, the table only works for the first person, not the rest
+		myString = firstName + lastName;
+		max = myString.length();//the length of our myString
+		while (counter < max)//start of while loop
+		{
+		   myChar = myString.charAt(counter);//character at location counter in myString
+		   int ascii = (int) myChar;
+		       System.out.println(+'\t'+""+'\t'+""+myChar +'\t' +""+ascii);
+		   counter = counter+1;
+        }//end while loop
+
+            System.out.println("You are now " + age + " years old");
+            //System.out.println("Year: " + year);
+            System.out.println("You were born in " + (int) (year - age));
+
+            System.out.println("In one year you will be " + (int) (age + 1));
+            System.out.println("In five years you will be " + (int) (age += 5));
+
+        System.out.println("Should we do this again? (y/n): ");
+           response = stdIn.next().charAt(0);
+
+	   } while (response == 'y' || response == 'Y');//end outer do-while loop
+
+     }
+}
